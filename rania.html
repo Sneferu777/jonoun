@@ -1,111 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gng</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>gng</title>
 
-    <style>
-        *{
-            box-sizing: border-box;
-            padding: 0;
-            margin: 0;
-        }
+<style>
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        body{
-            background-color: #0f0f12;
-            font-family: 'Inter', sans-serif;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
+body{
+    background-color: #0f0f12;
+    font-family: Inter, sans-serif;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
 
-        h1, h2{
-            text-align: center;
-            margin-bottom: 20px;
-        }
+h1, h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-        .cards{
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+.cards{
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
-        .card{
-            width: 280px;
-            height: 380px;
-            perspective: 1000px;
-        }
+.card{
+    width: 280px;
+    height: 380px;
+    perspective: 1000px;
+}
 
-        .card-inner{
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.6s ease;
-        }
+.card-inner{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
 
-        .card:hover .card-inner{
-            transform: rotateY(180deg);
-        }
+/* CLICK FLIP */
+.card.flipped .card-inner{
+    transform: rotateY(180deg);
+}
 
-        .card-front, .card-back{
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 10px;
-            overflow: hidden;
-        }
+.card-front,
+.card-back{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+}
 
-        .card-front img{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+.card-front img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-        .card-back{
-            background-color: #1a1a1a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transform: rotateY(180deg);
-            padding: 10px;
-            text-align: center;
-        }
+.card-back{
+    background: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotateY(180deg);
+    text-align: center;
+    padding: 10px;
+}
 
-        .card-btn{
-            border: none;
-            width: 100%;
-            height: 100%;
-            background: none;
-            padding: 0;
-            cursor: pointer;
-        }
+.card-btn{
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
 
-        .card-btn img{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+.card-btn img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-        #music-button{
-            margin-top: 20px;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
+#music-button{
+    margin: 30px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
 
-        #music-button img{
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-        }
-    </style>
+#music-button img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+</style>
 </head>
 
 <body>
@@ -115,175 +115,154 @@
 
 <div class="cards">
 
-    <!-- CARD -->
-    <div class="card">
-        <div class="card-inner">
-            <div class="card-front">
-                <button class="card-btn" data-music="amin.mpeg>
-                    <img src="lmalinois.jpeg">
-                </button>
-            </div>
-            <div class="card-back">
-                <h1>1715</h1>
-            </div>
-        </div>
+<!-- CARD -->
+<div class="card">
+  <div class="card-inner">
+    <div class="card-front">
+      <button class="card-btn" data-music="amin.mpeg">
+        <img src="lmalinois.jpeg">
+      </button>
     </div>
+    <div class="card-back"><h1>1715</h1></div>
+  </div>
+</div>
 
-    <!-- CARD -->
-    <div class="card">
-        <div class="card-inner">
-            <div class="card-front">
-                <button class="card-btn" data-music="l7az9a.mpeg">
-                    <img src="l7az9a.jpeg">
-                </button>
-            </div>
-            <div class="card-back">
-                <h1>ri7lati mn l3atsa lel 7az9a</h1>
-            </div>
-        </div>
+<div class="card">
+  <div class="card-inner">
+    <div class="card-front">
+      <button class="card-btn" data-music="l7az9a.mpeg">
+        <img src="l7az9a.jpeg">
+      </button>
     </div>
+    <div class="card-back"><h1>ri7lati mn l3atsa lel 7az9a</h1></div>
+  </div>
+</div>
 
-    <!-- CARD -->
-    <div class="card">
-        <div class="card-inner">
-            <div class="card-front">
-                <button class="card-btn" data-music="berhoush.mpeg">
-                    <img src="berhoush9re3.jpeg">
-                </button>
-            </div>
-            <div class="card-back">
-                <h1>9awaaaaad</h1>
-            </div>
-        </div>
+<div class="card">
+  <div class="card-inner">
+    <div class="card-front">
+      <button class="card-btn" data-music="berhoush.mpeg">
+        <img src="berhoush9re3.jpeg">
+      </button>
+    </div>
+    <div class="card-back"><h1>9awaaaaad</h1></div>
+  </div>
+</div>
 
-        <!-- CARD -->
 <div class="card">
   <div class="card-inner">
     <div class="card-front">
       <button class="card-btn" data-music="ana.mpeg">
-        <img src="ana.jpeg" alt="kda w kdia l7am 9nia">
+        <img src="ana.jpeg">
       </button>
     </div>
-    <div class="card-back">
-      <h1>m9awed SHWIYA</h1>
-    </div>
+    <div class="card-back"><h1>m9awed SHWIYA</h1></div>
   </div>
 </div>
 
-<!-- CARD -->
 <div class="card">
   <div class="card-inner">
     <div class="card-front">
       <button class="card-btn" data-music="leobara.mpeg">
-        <img src="me7kama.jpeg" alt="kda w kdia l7am 9nia">
+        <img src="me7kama.jpeg">
       </button>
     </div>
-    <div class="card-back">
-      <h1>A WILI FOMMI KANDKOR BIH LAH LAH LAH LAH</h1>
-    </div>
+    <div class="card-back"><h1>LAH LAH LAH</h1></div>
   </div>
 </div>
 
-<!-- CARD -->
 <div class="card">
   <div class="card-inner">
     <div class="card-front">
       <button class="card-btn" data-music="ramzi.mpeg">
-        <img src="ramzi.jpeg" alt="kda w kdia l7am 9nia">
+        <img src="ramzi.jpeg">
       </button>
     </div>
-    <div class="card-back">
-      <h1>A WILI FOMMI KANDKOR BIH LAH LAH LAH LAH</h1>
-    </div>
+    <div class="card-back"><h1>LAH LAH LAH</h1></div>
   </div>
 </div>
 
-<!-- CARD -->
 <div class="card">
   <div class="card-inner">
     <div class="card-front">
       <button class="card-btn" data-music="jana.mpeg">
-        <img src="jana.jpeg" alt="kda w kdia l7am 9nia">
+        <img src="jana.jpeg">
       </button>
     </div>
-    <div class="card-back">
-      <h1>A WILI FOMMI KANDKOR BIH LAH LAH LAH LAH</h1>
-    </div>
+    <div class="card-back"><h1>LAH LAH LAH</h1></div>
   </div>
 </div>
 
-<!-- CARD -->
-
-
-<!-- CARD (PAUSE) -->
+<!-- PAUSE -->
 <div class="card">
   <div class="card-inner">
     <div class="card-front">
-      <button class="card-btn" data-music="pause.mpeg">
-        <img src="pause.jpeg" alt="pause">
+      <button class="card-btn" data-music="pause">
+        <img src="pause.jpeg">
       </button>
     </div>
-    <div class="card-back">
-      <h1>PAUSE</h1>
-    </div>
+    <div class="card-back"><h1>PAUSE</h1></div>
   </div>
 </div>
-
-        
-    </div>
 
 </div>
 
 <audio id="bg-music" loop>
-    <source src="afia.mpeg" type="audio/mpeg">
+  <source src="afia.mpeg">
 </audio>
 
 <button id="music-button">
-    <img src="afiaimg.jpg">
+  <img src="afiaimg.jpg">
 </button>
 
 <script>
-    // background music
-    const music = document.getElementById("bg-music");
-    const musicBtn = document.getElementById("music-button");
+// background music
+const bg = document.getElementById("bg-music");
+document.getElementById("music-button").onclick = () => {
+    bg.play();
+    bg.loop = true;
+};
 
-    musicBtn.addEventListener("click", () => {
-        music.play();
-        musicBtn.style.display = "none";
-    });
-
-    // typing effect
-    const text = "WELCOME TO GNG'S GALLERY";
-    let index = 0;
-
-    function type(){
-        if(index < text.length){
-            document.getElementById("typing-effect").textContent += text[index];
-            index++;
-            setTimeout(type, 100);
-        }
+// typing effect
+const text = "WELCOME TO GNG'S GALLERY";
+let i = 0;
+(function type(){
+    if(i < text.length){
+        document.getElementById("typing-effect").textContent += text[i++];
+        setTimeout(type, 100);
     }
-    type();
+})();
 
-    // card music
-    const player = new Audio();
-    const buttons = document.querySelectorAll(".card-btn");
+// card music
+const player = new Audio();
+player.loop = true;
+let current = null;
 
-    buttons.forEach(btn => {     /* FIX */
-        btn.addEventListener("click", () => {
-            const song = btn.dataset.music;
+document.querySelectorAll(".card-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const card = btn.closest(".card");
+        const song = btn.dataset.music;
 
-            if(player.src.includes(song) && !player.paused){
-                player.pause();
-            } else {
-                player.src = song;
-                player.play();
-            }
-        });
+        document.querySelectorAll(".card").forEach(c => c !== card && c.classList.remove("flipped"));
+        card.classList.toggle("flipped");
+
+        if(song === "pause"){
+            player.pause();
+            current = null;
+            return;
+        }
+
+        if(current === song){
+            player.pause();
+            current = null;
+        } else {
+            player.src = song;
+            player.play();
+            current = song;
+        }
     });
+});
 </script>
 
 </body>
 </html>
-
-
