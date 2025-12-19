@@ -124,7 +124,7 @@ h1, h2, h3{
         <img src="lmalinois.jpeg">
       </button>
     </div>
-    <div class="card-back"><h1>1715</h1></div>
+    <div class="card-back"><h1>1715, sla3 l'internat, sekkir l3robiat, kikhchih fel khnez o maki3ealmoush l3gez</h1></div>
   </div>
 </div>
 
@@ -135,7 +135,7 @@ h1, h2, h3{
         <img src="l7az9a.jpeg">
       </button>
     </div>
-    <div class="card-back"><h1>ri7lati mn l3atsa lel 7az9a</h1></div>
+    <div class="card-back"><h1>ri7lati mn l3atsa lel 7az9a lel 9a7ba<br>m3achra m3a zamel<br>9a7ba khellat 3chranha o debrat f zellal</h1></div>
   </div>
 </div>
 
@@ -146,7 +146,7 @@ h1, h2, h3{
         <img src="berhoush9re3.jpeg">
       </button>
     </div>
-    <div class="card-back"><h1>9awaaaaad</h1></div>
+    <div class="card-back"><h1>9awaaaaad <br> sowlo 3lih l3ettar moul l7mar</h1></div>
   </div>
 </div>
 
@@ -154,10 +154,10 @@ h1, h2, h3{
   <div class="card-inner">
     <div class="card-front">
       <button class="card-btn" data-music="afia.mpeg">
-        <img src="ana.jpeg">
+        <img src="anaa.jpeg">
       </button>
     </div>
-    <div class="card-back"><h1>m9awed SHWIYA</h1></div>
+    <div class="card-back"><h1>m9awda 3lih shwiyat<br>hitler diyal chrab <br></h1></div>
   </div>
 </div>
 
@@ -168,7 +168,7 @@ h1, h2, h3{
         <img src="me7kama.jpeg">
       </button>
     </div>
-    <div class="card-back"><h1>LAH LAH LAH</h1></div>
+    <div class="card-back"><h1>wednin lghoul<br> mabghatch 3arch rra7man ytza3za3</h1></div>
   </div>
 </div>
 
@@ -180,7 +180,7 @@ h1, h2, h3{
         <img src="jana.jpeg">
       </button>
     </div>
-    <div class="card-back"><h1>LAH LAH LAH</h1></div>
+    <div class="card-back"><h1>jana ya watanna...</h1></div>
   </div>
 </div>
 
@@ -193,7 +193,7 @@ h1, h2, h3{
       </button>
     </div>
     <div class="card-back">
-        <h1>PAUSE</h1></div>
+        <h1>TARI9 tanni<br>npc d pause</h1></div>
   </div>
 </div>
 
@@ -228,6 +228,7 @@ let i = 0;
 // card music
 const player = new Audio();
 player.loop = true;
+let currentCard = null;
 
 document.querySelectorAll(".card-btn").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -236,37 +237,43 @@ document.querySelectorAll(".card-btn").forEach(btn => {
 
         if(song === "pause") {
             player.pause();
-            card.classList.remove("flipped");
+            if(currentCard) currentCard.classList.remove("flipped");
+            currentCard = null;
             return;
         }
 
-        // Toggle flip
+        if(currentCard && currentCard !== card) {
+            // Stop music and unflip any other card
+            player.pause();
+            currentCard.classList.remove("flipped");
+            currentCard = null;
+        }
+
+        // Toggle flip and music for this card
         const isFlipped = card.classList.contains("flipped");
+
         if(isFlipped) {
-            // Going from back to front -> stop music
+            // Going back to front -> stop music
             card.classList.remove("flipped");
             player.pause();
+            currentCard = null;
         } else {
-            // Going from front to back -> play music
-            // Stop other cards' music
-            document.querySelectorAll(".card").forEach(c => {
-                if(c !== card) {
-                    c.classList.remove("flipped");
-                }
-            });
-
+            // Going front to back -> play music
             card.classList.add("flipped");
             player.src = song;
             player.play();
+            currentCard = card;
         }
     });
 });
+
 
 
 </script>
 
 </body>
 </html>
+
 
 
 
