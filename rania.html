@@ -55,4 +55,143 @@ h1, h2, h3{
 }
 
 .card-front,
-.card-ba
+.card-back{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card-front img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-back{
+    background: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotateY(180deg);
+    text-align: center;
+    padding: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>TUFF BABIES GALLERY</h1>
+<h2 id="typing-effect"></h2>
+<h3 style="color: red;">Click on the card...</h3>
+
+<div class="cards">
+
+<div class="card" data-music="amin.mpeg">
+  <div class="card-inner">
+    <div class="card-front"><img src="lmalinois.jpeg"></div>
+    <div class="card-back"><h1>1715, sla3 l'internat...</h1></div>
+  </div>
+</div>
+
+<div class="card" data-music="l7az9a.mpeg">
+  <div class="card-inner">
+    <div class="card-front"><img src="l7az9a.jpeg"></div>
+    <div class="card-back"><h1>ri7lati mn l3atsa...</h1></div>
+  </div>
+</div>
+
+<div class="card" data-music="berhoush.mpeg">
+  <div class="card-inner">
+    <div class="card-front"><img src="berhoush9re3.jpeg"></div>
+    <div class="card-back"><h1>9awaaaaad...</h1></div>
+  </div>
+</div>
+
+<div class="card" data-music="afia.mpeg">
+  <div class="card-inner">
+    <div class="card-front"><img src="anaa.jpeg"></div>
+    <div class="card-back"><h1>m9awda 3lih shwiyat...</h1></div>
+  </div>
+</div>
+
+<div class="card" data-music="leobara.mpeg">
+  <div class="card-inner">
+    <div class="card-front"><img src="me7kama.jpeg"></div>
+    <div class="card-back"><h1>wednin lghoul...</h1></div>
+  </div>
+</div>
+
+<div class="card" data-music="jana.mpeg">
+  <div class="card-inner">
+    <div class="card-front"><img src="jana.jpeg"></div>
+    <div class="card-back"><h1>jana ya watanna...</h1></div>
+  </div>
+</div>
+
+<!-- Pause Card -->
+<div class="card" data-music="pause">
+  <div class="card-inner">
+    <div class="card-front"><img src="pause.jpeg"></div>
+    <div class="card-back"><h1>PAUSE</h1></div>
+  </div>
+</div>
+
+</div>
+
+<script>
+// Typing effect
+const text = "WELCOME TO GNG'S GALLERY";
+let i = 0;
+(function type(){
+    if(i < text.length){
+        document.getElementById("typing-effect").textContent += text[i++];
+        setTimeout(type, 100);
+    }
+})();
+
+// Card music logic
+const player = new Audio();
+player.loop = true;
+let currentCard = null;
+
+document.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("click", () => {
+        const song = card.dataset.music;
+
+        if(song === "pause") {
+            // Stop music and unflip any card
+            player.pause();
+            if(currentCard) currentCard.classList.remove("flipped");
+            currentCard = null;
+            return;
+        }
+
+        const isFlipped = card.classList.contains("flipped");
+
+        if(isFlipped) {
+            // Going back to front -> stop music
+            card.classList.remove("flipped");
+            player.pause();
+            currentCard = null;
+        } else {
+            // Going front to back -> play music
+            if(currentCard && currentCard !== card){
+                currentCard.classList.remove("flipped");
+                player.pause();
+            }
+
+            card.classList.add("flipped");
+            player.src = song;
+            player.play();
+            currentCard = card;
+        }
+    });
+});
+</script>
+
+</body>
+</html>
