@@ -112,6 +112,7 @@ h1, h2{
 
 <h1>TUFF BABIES GALLERY</h1>
 <h2 id="typing-effect"></h2>
+<h3 style="color : red;">click on the kmamer...</h3>
 
 <div class="cards">
 
@@ -243,27 +244,36 @@ document.querySelectorAll(".card-btn").forEach(btn => {
         const card = btn.closest(".card");
         const song = btn.dataset.music;
 
-        document.querySelectorAll(".card").forEach(c => c !== card && c.classList.remove("flipped"));
-        card.classList.toggle("flipped");
+        // Close other cards
+        document.querySelectorAll(".card").forEach(c => {
+            if (c !== card) c.classList.remove("flipped");
+        });
 
         if(song === "pause"){
             player.pause();
             current = null;
+            card.classList.remove("flipped"); // also unflip pause card if needed
             return;
         }
 
         if(current === song){
+            // If clicking the currently playing card, stop music and unflip
             player.pause();
             current = null;
+            card.classList.remove("flipped");
         } else {
+            // Play new song
             player.src = song;
             player.play();
             current = song;
+            card.classList.add("flipped"); // flip this card
         }
     });
 });
+
 </script>
 
 </body>
 </html>
+
 
