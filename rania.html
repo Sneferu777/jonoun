@@ -28,6 +28,7 @@
         }
         .cards{
             display: flex;
+            flex : direction;
             gap: 30px;
             flex-wrap: wrap;
             justify-content: center;
@@ -60,6 +61,7 @@
             height: 100%;
             object-fit: cover;
         }
+        
         .card-back{
             background-color: #1a1a1a;
             color: white;
@@ -81,6 +83,19 @@
             height: 60px;
             border-radius: 50%;
         }
+        .card-btn{
+            border : none;
+            width : 100%;
+            height: 100%;
+            background : none;
+            padding : 0;
+            cursor : pointer;
+        }
+        .card-btn img{
+            width : 100%;
+            height: 100%;
+            object-fit : cover;
+        }
     </style>
 </head>
 <body>
@@ -91,7 +106,7 @@
         <div class="card">
             <div class="card-inner">
                 <div class="card-front">
-                    <img src="lmalinois.jpeg" alt="kda w kdia l7am 9nia">
+                    <button class="card-btn" data-music="amin"><img src="lmalinois.jpeg" alt="kda w kdia l7am 9nia"></button>
                 </div>
                 <div class="card-back">
                     <h1>1715</h1>
@@ -102,7 +117,7 @@
         <div class="card">
             <div class="card-inner">
                 <div class="card-front">
-                    <img src="l7az9a.jpeg" alt="kda w kdia l7am 9nia">
+                    <button class="card-btn" data-music="l7az9a"><img src="l7az9a.jpeg" alt="kda w kdia l7am 9nia"></button>
                 </div>
                 <div class="card-back">
                     <h1>ri7lati mn l3atsa lel 7az9a lel 9a7ba</h1>
@@ -113,7 +128,7 @@
         <div class="card">
             <div class="card-inner">
                 <div class="card-front">
-                    <button id="berhoush"><img src="berhoush9re3.jpeg" alt="kda w kdia l7am 9nia"></button>
+                    <button class="card-btn"  data-music="berhoush"><img src="berhoush9re3.jpeg" alt="kda w kdia l7am 9nia"></button>
                 </div>
                 <div class="card-back">
                     <h1>9awaaaaad</h1>
@@ -124,7 +139,7 @@
         <div class="card">
             <div class="card-inner">
                 <div class="card-front">
-                    <button id="ana"><img src="ana.jpeg" alt="kda w kdia l7am 9nia"></button>
+                    <button class="card-btn"  data-music="ana"><img src="ana.jpeg" alt="kda w kdia l7am 9nia"></button>
                 </div>
                 <div class="card-back">
                     <h1>m9awed SHWIYA</h1>
@@ -135,7 +150,7 @@
         <div class="card">
             <div class="card-inner">
                 <div class="card-front">
-                    <button id="leobara"><img src="me7kama.jpeg" alt="kda w kdia l7am 9nia"></button>
+                    <button class="card-btn" data-music="leobara"><img src="me7kama.jpeg" alt="kda w kdia l7am 9nia"></button>
                 </div>
                 <div class="card-back">
                     <h1>A WILI FOMMI KANDKOR BIH LAH 
@@ -148,7 +163,7 @@
     <div class="card">
             <div class="card-inner">
                 <div class="card-front">
-                    <button id="ramzi"><img src="ramzi.jpeg" alt="kda w kdia l7am 9nia"></button>
+                    <button class="card-btn"  data-music="ramzi"><img src="ramzi.jpeg" alt="kda w kdia l7am 9nia"></button>
                 </div>
                 <div class="card-back">
                     <h1>A WILI FOMMI KANDKOR BIH LAH 
@@ -158,19 +173,7 @@
         <div class="card">
             <div class="card-inner">
                 <div class="card-front">
-                    <button id="janna"><img src="janna.jpeg" alt="kda w kdia l7am 9nia"></button>
-                </div>
-                <div class="card-back">
-                    <h1>A WILI FOMMI KANDKOR BIH LAH 
-                    LAH LAH LAH</h1>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-inner">
-                <div class="card-front">
-                    <button id="chahd"></button><img src="chahd.jpeg" alt="kda w kdia l7am 9nia">
+                    <button class="card-btn"  data-music="janna"><img src="janna.jpeg" alt="kda w kdia l7am 9nia"></button>
                 </div>
                 <div class="card-back">
                     <h1>A WILI FOMMI KANDKOR BIH LAH 
@@ -182,7 +185,19 @@
         <div class="card">
             <div class="card-inner">
                 <div class="card-front">
-                    <button id="pause"><img src="pause.jpeg" alt="kda w kdia l7am 9nia"></button>
+                    <button class="card-btn"  data-music="chahd"></button><img src="chahd.jpeg" alt="kda w kdia l7am 9nia">
+                </div>
+                <div class="card-back">
+                    <h1>A WILI FOMMI KANDKOR BIH LAH 
+                    LAH LAH LAH</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <button class="card-btn"  music-data="pause"><img src="pause.jpeg" alt="kda w kdia l7am 9nia"></button>
                 </div>
                 <div class="card-back">
                     <h1>A WILI FOMMI KANDKOR BIH LAH 
@@ -219,9 +234,29 @@
             }
         }
         type();
+
+        // each card's music func
+        const player = new Audio();
+        const buttons = document.querySelectorAll(".card-btn");
+
+        button.forEach(btn => {
+            btn.addEventListener("click",() => {
+                const music = btn.dataset.music;
+                if( player.src.includes(music) && !player.paused){
+                    player.pause();
+                    
+                }
+                else{
+                    player.src = music;
+                    player.play();
+                }
+            });
+        });
+        
     </script>
 </body>
 </html>
+
 
 
 
