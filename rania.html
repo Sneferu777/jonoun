@@ -228,44 +228,46 @@ let i = 0;
 // card music
 const player = new Audio();
 player.loop = true;
-let current = null;
 
 document.querySelectorAll(".card-btn").forEach(btn => {
     btn.addEventListener("click", () => {
         const card = btn.closest(".card");
         const song = btn.dataset.music;
 
-        // Close other cards
-        document.querySelectorAll(".card").forEach(c => {
-            if (c !== card) c.classList.remove("flipped");
-        });
-
-        if(song === "pause"){
+        if(song === "pause") {
             player.pause();
-            current = null;
-            card.classList.remove("flipped"); // also unflip pause card if needed
+            card.classList.remove("flipped");
             return;
         }
 
-        if(current === song){
-            // If clicking the currently playing card, stop music and unflip
-            player.pause();
-            current = null;
+        // Toggle flip
+        const isFlipped = card.classList.contains("flipped");
+        if(isFlipped) {
+            // Going from back to front -> stop music
             card.classList.remove("flipped");
+            player.pause();
         } else {
-            // Play new song
+            // Going from front to back -> play music
+            // Stop other cards' music
+            document.querySelectorAll(".card").forEach(c => {
+                if(c !== card) {
+                    c.classList.remove("flipped");
+                }
+            });
+
+            card.classList.add("flipped");
             player.src = song;
             player.play();
-            current = song;
-            card.classList.add("flipped"); // flip this card
         }
     });
 });
+
 
 </script>
 
 </body>
 </html>
+
 
 
 
